@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GeoJSONFactory {
-    static Map<String, Class> geoJsonTypeMap = new HashMap<>();
+    static Map<String, Class> geoJsonTypeMap = new HashMap<String, Class>();
 
     static {
         geoJsonTypeMap.put(GeoJsonTypes.TYPE_POINT,Point.class);

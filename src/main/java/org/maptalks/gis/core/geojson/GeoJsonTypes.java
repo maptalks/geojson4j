@@ -37,8 +37,8 @@ public class GeoJsonTypes {
     public static final int INT_TYPE_EXT_SECTOR = 104;
 
 
-    private static final Map<String, Integer> typeMaps = new HashMap<>();
-    private static final Map<Integer,String> rTypeMaps = new HashMap<>();
+    private static final Map<String, Integer> typeMaps = new HashMap<String, Integer>();
+    private static final Map<Integer,String> rTypeMaps = new HashMap<Integer,String>();
 
     static  {
         typeMaps.put(TYPE_POINT, INT_TYPE_POINT);
