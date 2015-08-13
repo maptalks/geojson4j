@@ -4,33 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
+    <!--<parent>
         <groupId>org.maptalks</groupId>
         <artifactId>engine-projects</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-    </parent>
+    </parent>-->
 
     <groupId>org.maptalks</groupId>
     <artifactId>maptalks-geojson</artifactId>
     <version>${project.release.version}</version>
 
-    <repositories>
-        <repository>
-            <id>MapTalks-mvn-repo</id>
-            <name>MapTalks Maven Repository</name>
-            <url>https://raw.github.com/MapTalks/mvn-repo/releases/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
+            <version>1.2.6</version>
         </dependency>
     </dependencies>
 
