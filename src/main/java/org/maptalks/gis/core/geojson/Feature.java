@@ -3,6 +3,7 @@ package org.maptalks.gis.core.geojson;
 import java.util.Map;
 
 public class Feature extends GeoJSON {
+    private Object id;
     private Geometry geometry;
     private Map<String, Object> properties;
     
@@ -39,6 +40,14 @@ public class Feature extends GeoJSON {
         this.properties = properties;
     }
 
+    public Object getId() {
+        return id;
+    }
+
+    public void setId(Object id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Feature)) {
@@ -62,4 +71,6 @@ public class Feature extends GeoJSON {
         }
         return true;
     }
+
+
 }
