@@ -10,7 +10,14 @@ public class Feature extends GeoJSON {
     public Feature(
             Geometry geometry,
             Map<String,Object> properties) {
+        this(null, geometry,properties);
+    }
+
+    public Feature(Object id,
+            Geometry geometry,
+            Map<String,Object> properties) {
         super();
+        this.setId(id);
         this.setGeometry(geometry);
         this.setProperties(properties);
     }
@@ -67,6 +74,13 @@ public class Feature extends GeoJSON {
                 return false;
             }
         } else if (!this.properties.equals(o.getProperties())) {
+            return false;
+        }
+        if (this.id == null) {
+            if (o.id != null) {
+                return false;
+            }
+        }else if (!this.id.equals(o.id)) {
             return false;
         }
         return true;
