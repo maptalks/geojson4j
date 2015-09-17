@@ -14,6 +14,10 @@
     <artifactId>maptalks-geojson</artifactId>
     <version>${project.release.version}</version>
 
+    <properties>
+        <mvn-repo.path>${project.build.directory}/../../mvn-repo</mvn-repo.path>
+        <project.release.version>1.0.0-SNAPSHOT</project.release.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -31,11 +35,7 @@
         </repository>
     </distributionManagement>
 
-    <properties>
-        <mvn-repo.path>${project.build.directory}/../../mvn-repo</mvn-repo.path>
-        <github.global.server>github</github.global.server>
-        <project.release.version>1.0.0-SNAPSHOT</project.release.version>
-    </properties>
+
 
     <profiles>
         <profile>
