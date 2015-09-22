@@ -6,12 +6,19 @@
 
     <groupId>org.maptalks</groupId>
     <artifactId>maptalks-geojson</artifactId>
-    <version>${project.release.version}</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <mvn-repo.path>${project.build.directory}/../../mvn-repo</mvn-repo.path>
-        <project.release.version>1.0.0-SNAPSHOT</project.release.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>1.7</jdk.version>
+        <mvn.repo.base>${user.home}/repos/mvn-repo</mvn.repo.base>
     </properties>
+
+    <scm>
+        <connection>scm:git:https://github.com/MapTalks/maptalks-geojson</connection>
+        <developerConnection>scm:git:git@github.com:MapTalks/maptalks-geojson.git</developerConnection>
+        <url>https://github.com/MapTalks/maptalks-geojson</url>
+    </scm>
 
     <dependencies>
         <dependency>
@@ -23,65 +30,52 @@
 
     <distributionManagement>
         <repository>
-            <id>internal.repo</id>
-            <name>Temporary Staging Repository</name>
-            <url>file://${mvn-repo.path}</url>
+            <id>github.local</id>
+            <name>Local Repository</name>
+            <url>file://${mvn.repo.base}/</url>
         </repository>
     </distributionManagement>
 
-
-
-    <profiles>
-        <profile>
-            <id>product</id>
-            <properties>
-                <project.release.version>1.0.0</project.release.version>
-            </properties>
-        </profile>
-    </profiles>
-
     <build>
-
-        <sourceDirectory>src/main/java</sourceDirectory>
-
-        <testSourceDirectory>src/test</testSourceDirectory>
-
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-        </resources>
-
-        <testResources>
-            <testResource>
-                <directory>src/test</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </testResource>
-        </testResources>
-
         <plugins>
             <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
                 <configuration>
-                    <altDeploymentRepository>internal.repo::default::file://${mvn-repo.path}</altDeploymentRepository>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.2</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
                 <configuration>
-                    <skipTests>true</skipTests>
+                    <javadocVersion>1.7</javadocVersion>
+                    <failOnError>false</failOnError>
                 </configuration>
             </plugin>
 
-        </plugins>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <skipTests>false</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>
