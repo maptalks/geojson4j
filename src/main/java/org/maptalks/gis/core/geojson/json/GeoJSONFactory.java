@@ -79,9 +79,9 @@ public class GeoJSONFactory {
 
     private static GeoJSON create(JSONObject node) {
         String type = node.getString("type");
-        if (type.equals("FeatureCollection")) {
+        if ("FeatureCollection".equals(type)) {
             return readFeatureCollection(node);
-        } else if (type.equals("Feature")) {
+        } else if ("Feature".equals(type)) {
             return readFeature(node);
         } else {
             return readGeometry(node, type);
