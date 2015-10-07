@@ -89,17 +89,29 @@ public class GeoJSONFactory {
     }
     
     private static FeatureCollection readFeatureCollection(JSONObject node) {
+
         JSONArray jFeatures = node.getJSONArray("features");
+        JSONObject crsJson = node.getJSONObject("crs");
+        CRS crs = null;
+        if (crsJson != null) {
+            crs = JSON.toJavaObject(crsJson, CRS.class);
+        }
         if (jFeatures == null) {
             //return a empty FeatureCollection
-            return new FeatureCollection(new Feature[0]);
+            FeatureCollection result = new FeatureCollection();
+            result.setCrs(crs);
+            result.setFeatures(new Feature[0]);
+            return result;
         }
         int size = jFeatures.size();
         Feature[] features = new Feature[size];
         for (int i=0;i<size;i++) {
             features[i] = readFeature(jFeatures.getJSONObject(i));
         }
-        return new FeatureCollection(features);
+        FeatureCollection result = new FeatureCollection();
+        result.setCrs(crs);
+        result.setFeatures(features);
+        return result;
     }
     
     private static Feature readFeature(JSONObject node) {
@@ -116,6 +128,13 @@ public class GeoJSONFactory {
     
     private static Geometry readGeometry(JSONObject node, String type) {
         if (GeoJsonTypes.TYPE_GEOMETRYCOLLECTION.equals(type)) {
+            JSONObject crsJson = node.getJSONObject("crs");
+            CRS crs = null;
+            if (crsJson != null) {
+                crs = JSON.toJavaObject(crsJson, CRS.class);
+            }
+            GeometryCollection result = new GeometryCollection(new Geometry[0]);
+            result.setCrs(crs);
             JSONArray jGeos = node.getJSONArray("geometries");
             if (jGeos != null) {
                 int size = jGeos.size();
@@ -124,10 +143,12 @@ public class GeoJSONFactory {
                     JSONObject jgeo = jGeos.getJSONObject(i);
                     geometries[i] = readGeometry(jgeo, jgeo.getString("type"));
                 }
-                return new GeometryCollection(geometries);
+                result.setGeometries(geometries);
+            } else {
+                //return a empty GeometryCollection
+                result.setGeometries(new Geometry[0]);
             }
-            //return a empty GeometryCollection
-            return new GeometryCollection(new Geometry[0]);
+            return result;
         }
         Class clazz = getGeoJsonType(type);
         Object obj = JSON.toJavaObject(node, clazz);
