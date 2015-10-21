@@ -36,25 +36,40 @@ public class GeoJSONFactory {
     }
 
     /**
+     * 将json解析为FeatureCollection数组
+     * @param json
+     * @return
+     */
+    public static FeatureCollection[] createFeatureCollectionArray(String json) {
+        JSONArray node = JSON.parseArray(json);
+        int size = node.size();
+        FeatureCollection[] result = new FeatureCollection[size];
+        for (int i = 0; i < size; i++) {
+            result[i] = ((FeatureCollection) create(((JSONObject) node.get(i))));
+        }
+        return result;
+    }
+
+    /**
      * 将json解析为Feature数组
      * @param json
      * @return
      */
     public static Feature[] createFeatureArray(String json) {
         JSONArray node = JSON.parseArray(json);
-
         int size = node.size();
         Feature[] result = new Feature[size];
         for (int i = 0; i < size; i++) {
             GeoJSON geojson = create(((JSONObject) node.get(i)));
-           if (geojson instanceof Geometry) {
+            if (geojson instanceof Geometry) {
                 result[i] = new Feature(((Geometry) geojson));
             } else {
-               result[i] = ((Feature) geojson);
-           }
+                result[i] = ((Feature) geojson);
+            }
         }
         return result;
     }
+
 
     /**
      * 将json解析为Geometry数组
