@@ -16,14 +16,14 @@ public class Rectangle extends GeometryExt {
     }
 
     public Rectangle(double[] coordinates, double width, double height, Unit unit) {
-        super(unit.toString());
+        super(unit);
         this.coordinates = coordinates;
         this.width = width;
         this.height = height;
     }
 
     public Rectangle() {
-        super(Unit.Default.toString());
+        super(Unit.Default);
     }
 
     public double[] getCoordinates() {

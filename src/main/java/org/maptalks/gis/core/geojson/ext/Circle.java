@@ -11,19 +11,19 @@ public class Circle extends GeometryExt {
     private double radius;
 
     public Circle(double[] coordinates, double radius) {
-        super(Unit.Default.toString());
+        super(Unit.Default);
         this.coordinates = coordinates;
         this.radius = radius;
     }
 
     public Circle(double[] coordinates, double radius, Unit unit) {
-        super(unit.toString());
+        super(unit);
         this.coordinates = coordinates;
         this.radius = radius;
     }
 
     public Circle() {
-        super(Unit.Default.toString());
+        super(Unit.Default);
     }
 
     public double[] getCoordinates() {

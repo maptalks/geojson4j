@@ -8,17 +8,17 @@ import org.maptalks.gis.core.geojson.Geometry;
  */
 public class GeometryExt extends Geometry {
     //长度单位, meter或者px
-    private String unit;
+    private Unit unit;
 
-    public GeometryExt(String unit) {
+    public GeometryExt(Unit unit) {
         this.unit = unit;
     }
 
-    public String getUnit() {
+    public Unit getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(Unit unit) {
         this.unit = unit;
     }
 }

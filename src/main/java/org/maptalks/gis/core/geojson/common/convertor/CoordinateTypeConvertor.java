@@ -54,19 +54,19 @@ public class CoordinateTypeConvertor {
 		} else if (geometry instanceof Circle) {
 			Circle circle = ((Circle) geometry);
 			double[] c = convertor.convert(circle.getCoordinates(), from, to);
-			return new Circle(c, circle.getRadius(), Unit.valueOf(circle.getUnit()));
+			return new Circle(c, circle.getRadius(), circle.getUnit());
 		} else if (geometry instanceof Ellipse) {
 			Ellipse ellipse = ((Ellipse) geometry);
 			double[] c = convertor.convert(ellipse.getCoordinates(), from, to);
-			return new Ellipse(c, ellipse.getWidth(), ellipse.getHeight(), Unit.valueOf(ellipse.getUnit()));
+			return new Ellipse(c, ellipse.getWidth(), ellipse.getHeight(), ellipse.getUnit());
 		} else if (geometry instanceof Rectangle) {
 			Rectangle rect = ((Rectangle) geometry);
 			double[] c = convertor.convert(rect.getCoordinates(), from, to);
-			return new Rectangle(c, rect.getWidth(), rect.getHeight(), Unit.valueOf(rect.getUnit()));
+			return new Rectangle(c, rect.getWidth(), rect.getHeight(), rect.getUnit());
 		} else if (geometry instanceof Sector) {
 			Sector sector = ((Sector) geometry);
 			double[] c = convertor.convert(sector.getCoordinates(), from, to);
-			return new Sector(c, sector.getRadius(), sector.getStartAngle(), sector.getEndAngle(), Unit.valueOf(sector.getUnit()));
+			return new Sector(c, sector.getRadius(), sector.getStartAngle(), sector.getEndAngle(), sector.getUnit());
 		}
 		return null;
 	}
