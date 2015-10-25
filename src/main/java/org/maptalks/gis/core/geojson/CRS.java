@@ -1,5 +1,7 @@
 package org.maptalks.gis.core.geojson;
 
+import org.maptalks.gis.core.geojson.common.CoordinateType;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,12 +36,12 @@ public class CRS {
      * @param coordinateType
      * @return
      */
-    public static CRS createCnCoordinateType(final String coordinateType) {
+    public static CRS createCnCoordinateType(final CoordinateType coordinateType) {
         CRS crs = new CRS();
         crs.setType("cnCoordinateType");
         crs.setProperties(new HashMap<String, Object>(){
             {
-                put("name", coordinateType);
+                put("name", coordinateType.toString());
             }
         });
         return crs;
