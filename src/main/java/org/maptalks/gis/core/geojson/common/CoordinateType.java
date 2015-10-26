@@ -1,10 +1,9 @@
 package org.maptalks.gis.core.geojson.common;
 
-
 import org.maptalks.gis.core.geojson.common.exceptions.InvalidCoordinateTypeException;
 
 /**
- * 坐标种类枚举类, 定义了中国普遍使用的类WGS84坐标类型, 涉及到的坐标类型如下:
+ * 坐标种类枚举类, 定义了中国地区普遍使用的类WGS84坐标类型, 涉及到的坐标类型如下:
  *
  *WGS84坐标系：即地球坐标系，国际上通用的坐标系。
 
@@ -59,4 +58,5 @@ public enum CoordinateType {
             throw new InvalidCoordinateTypeException(t);
         }
     }
+
 }
