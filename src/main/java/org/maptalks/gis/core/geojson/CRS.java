@@ -28,6 +28,16 @@ public class CRS {
         this.properties = properties;
     }
 
+    public final static CRS DEFAULT;
+
+    static {
+        DEFAULT = new CRS();
+        DEFAULT.setType("EPSG");
+        DEFAULT.setProperties(new HashMap<String, Object>(){
+            {put("code","4326");}
+        });
+    }
+
     /**
      * create a Chinese Coordinate Type CRS.
      * example:
