@@ -2,11 +2,14 @@ package org.maptalks.gis.core.geojson;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.annotation.JSONField;
 
 public abstract class GeoJSON {
+    // default: 0
+    @JSONField(ordinal = -1)
     private String type;
     private CRS crs;
-    
+
     public GeoJSON() {
         setType(getClass().getSimpleName());
     }

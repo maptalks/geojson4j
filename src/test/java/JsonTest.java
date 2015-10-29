@@ -70,6 +70,13 @@ public class JsonTest {
     }
 
     @Test
+    public void testOrdinal() {
+        Point p = new Point(new double[]{1.0, 2.0});
+        String s = p.toString();
+        Assert.assertEquals("{\"type\":\"Point\",\"coordinates\":[1.0,2.0]}", s);
+    }
+
+    @Test
     public void testParsingGeometry() {
         String json ="[\n" +
                 "        { " +
