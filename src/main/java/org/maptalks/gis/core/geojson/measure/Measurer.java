@@ -175,7 +175,7 @@ public class Measurer{
      * @param crs
      * @return
      */
-    public double computeArea(GeoJSON geoJSON, CRS crs) {
+    public static double computeArea(GeoJSON geoJSON, CRS crs) {
         if (geoJSON == null) {
             return 0;
         }

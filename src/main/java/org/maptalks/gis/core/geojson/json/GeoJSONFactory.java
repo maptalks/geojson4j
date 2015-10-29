@@ -45,6 +45,10 @@ public class GeoJSONFactory {
         int size = node.size();
         FeatureCollection[] result = new FeatureCollection[size];
         for (int i = 0; i < size; i++) {
+            if (node.get(i) == null) {
+                result[i] = null;
+                continue;
+            }
             result[i] = ((FeatureCollection) create(((JSONObject) node.get(i))));
         }
         return result;
@@ -60,6 +64,10 @@ public class GeoJSONFactory {
         int size = node.size();
         Feature[] result = new Feature[size];
         for (int i = 0; i < size; i++) {
+            if (node.get(i) == null) {
+                result[i] = null;
+                continue;
+            }
             GeoJSON geojson = create(((JSONObject) node.get(i)));
             if (geojson instanceof Geometry) {
                 result[i] = new Feature(((Geometry) geojson));
@@ -82,6 +90,10 @@ public class GeoJSONFactory {
         int size = node.size();
         Geometry[] result = new Geometry[size];
         for (int i = 0; i < size; i++) {
+            if (node.get(i) == null) {
+                result[i] = null;
+                continue;
+            }
             GeoJSON geojson = create(((JSONObject) node.get(i)));
             if (geojson instanceof Feature) {
                 result[i] = ((Feature) geojson).getGeometry();
@@ -102,7 +114,7 @@ public class GeoJSONFactory {
             return readGeometry(node, type);
         }
     }
-    
+
     private static FeatureCollection readFeatureCollection(JSONObject node) {
 
         JSONArray jFeatures = node.getJSONArray("features");
@@ -128,7 +140,7 @@ public class GeoJSONFactory {
         result.setFeatures(features);
         return result;
     }
-    
+
     private static Feature readFeature(JSONObject node) {
         JSONObject geoJ = node.getJSONObject("geometry");
         Geometry geo = null;
@@ -140,7 +152,7 @@ public class GeoJSONFactory {
         result.setGeometry(geo);
         return result;
     }
-    
+
     private static Geometry readGeometry(JSONObject node, String type) {
         if (GeoJsonTypes.TYPE_GEOMETRYCOLLECTION.equals(type)) {
             JSONObject crsJson = node.getJSONObject("crs");
