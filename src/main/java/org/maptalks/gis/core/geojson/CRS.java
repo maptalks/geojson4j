@@ -1,6 +1,8 @@
 package org.maptalks.gis.core.geojson;
 
+import com.alibaba.fastjson.JSON;
 import org.maptalks.gis.core.geojson.common.CoordinateType;
+import org.maptalks.gis.core.geojson.common.exceptions.InvalidCRSException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,14 +30,38 @@ public class CRS {
         this.properties = properties;
     }
 
-    public final static CRS DEFAULT;
+    public final static CRS DEFAULT = CoordinateType.gcj02.toCRS();
+    public final static CRS BD09LL = CoordinateType.bd09ll.toCRS();
+    public final static CRS PIXEL = CoordinateType.pixel.toCRS();
+    public final static CRS GCJ02 = CoordinateType.gcj02.toCRS();
+    public final static CRS CGCS2000 = CoordinateType.cgcs2000.toCRS();
+    public final static CRS WGS84 = CoordinateType.wgs84.toCRS();
 
-    static {
-        DEFAULT = new CRS();
-        DEFAULT.setType("EPSG");
-        DEFAULT.setProperties(new HashMap<String, Object>(){
-            {put("code","4326");}
-        });
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof CRS)) {
+            return false;
+        }
+        CRS o = ((CRS) obj);
+        return this.type.equals(o.type) && this.properties.equals(o.properties);
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
+    }
+
+    /**
+     * generate a crs from json string
+     * @param json
+     * @return
+     */
+    public static CRS parseJson(String json) {
+        try {
+            return JSON.parseObject(json, CRS.class);
+        }catch (Throwable e) {
+            throw new InvalidCRSException(json,e);
+        }
     }
 
     /**

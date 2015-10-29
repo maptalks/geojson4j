@@ -2,6 +2,7 @@ package org.maptalks.gis.core.geojson.common.convertor;
 
 import org.maptalks.gis.core.geojson.*;
 import org.maptalks.gis.core.geojson.common.CoordinateType;
+import org.maptalks.gis.core.geojson.common.CoordinateTypeHelper;
 import org.maptalks.gis.core.geojson.common.convertor.impl.Gcj02_Wgs84_BD09Convertor;
 import org.maptalks.gis.core.geojson.ext.*;
 
@@ -16,9 +17,15 @@ public class CoordinateTypeConvertor {
         convertor = new Gcj02_Wgs84_BD09Convertor();
 	}
 
-
-	public static Geometry convert(Geometry geometry, CoordinateType from, CoordinateType to) {
-		if (convertor == null || from.equals(to)) {
+    /**
+     * crs键图形转换, 目前只支持CoordinateType类型的相互转换
+     * @param geometry
+     * @param from
+     * @param to
+     * @return
+     */
+	public static Geometry convert(Geometry geometry, CRS from, CRS to) {
+		if (convertor == null || from == null || to == null || from.equals(to)) {
 			return geometry;
 		}
 		//直接覆盖geometry的属性, 减少创建Geometry对象
@@ -71,7 +78,7 @@ public class CoordinateTypeConvertor {
 		return null;
 	}
 
-	public static double[][][][] convert(double[][][][] coordinates, CoordinateType from, CoordinateType to) {
+	public static double[][][][] convert(double[][][][] coordinates, CRS from, CRS to) {
 		if (coordinates == null) {
 			return null;
 		}
@@ -88,7 +95,7 @@ public class CoordinateTypeConvertor {
 		return result;
 	}
 
-	public static double[][][] convert(double[][][] coordinates, CoordinateType from, CoordinateType to) {
+	public static double[][][] convert(double[][][] coordinates, CRS from, CRS to) {
 		if (coordinates == null) {
 			return null;
 		}
@@ -105,8 +112,8 @@ public class CoordinateTypeConvertor {
 		return result;
 	}
 
-	public static double[][] convert(double[][] coordinates, CoordinateType from,
-					 CoordinateType to) {
+	public static double[][] convert(double[][] coordinates, CRS from,
+					 CRS to) {
 		if (coordinates == null || coordinates.length == 0) {
 			return null;
 		}

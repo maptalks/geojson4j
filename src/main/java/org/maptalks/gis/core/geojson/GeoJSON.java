@@ -10,7 +10,8 @@ public abstract class GeoJSON {
     public GeoJSON() {
         setType(getClass().getSimpleName());
     }
-    
+
+    @Override
     public String toString() {
         return JSON.toJSONString(this);
     }

@@ -1,7 +1,9 @@
 package org.maptalks.gis.core.geojson.common.convertor.impl;
 
 
+import org.maptalks.gis.core.geojson.CRS;
 import org.maptalks.gis.core.geojson.common.CoordinateType;
+import org.maptalks.gis.core.geojson.common.CoordinateTypeHelper;
 import org.maptalks.gis.core.geojson.common.convertor.ICoordTypeConvertor;
 
 public class Gcj02_Wgs84_BD09Convertor implements ICoordTypeConvertor {
@@ -11,15 +13,17 @@ public class Gcj02_Wgs84_BD09Convertor implements ICoordTypeConvertor {
      * 坐标转换
      *
      * @param coordinate
-     * @param from
-     * @param to
+     * @param f
+     * @param t
      * @return
      */
-    @Override
-    public double[] convert(double[] coordinate, CoordinateType from,
-                            CoordinateType to) {
-        if (from == null || to == null)
+    public double[] convert(double[] coordinate, CRS f,
+                            CRS t) {
+        if (f == null || t == null)
             return null;
+        CoordinateType from,to;
+        from = CoordinateTypeHelper.convertFromCRS(f);
+        to = CoordinateTypeHelper.convertFromCRS(t);
         if (from.equals(to))
             return coordinate;
         if ((CoordinateType.wgs84.equals(from) || CoordinateType.cgcs2000.equals(from))
@@ -78,7 +82,7 @@ public class Gcj02_Wgs84_BD09Convertor implements ICoordTypeConvertor {
         ICoordTypeConvertor convertor = new Gcj02_Wgs84_BD09Convertor();
 
         for (int i = 0; i < lonlats.length; i++) {
-            double[] to = convertor.convert(lonlats[i], CoordinateType.gcj02, CoordinateType.wgs84);
+            double[] to = convertor.convert(lonlats[i], CRS.GCJ02, CRS.WGS84);
             System.out.println("[" + to[0] + "," + to[1] + "],");
         }
     }

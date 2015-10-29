@@ -1,6 +1,7 @@
 package org.maptalks.gis.core.geojson.common;
 
-import org.maptalks.gis.core.geojson.common.exceptions.InvalidCoordinateTypeException;
+import org.maptalks.gis.core.geojson.CRS;
+import org.maptalks.gis.core.geojson.common.exceptions.InvalidCRSException;
 
 /**
  * 坐标种类枚举类, 定义了中国地区普遍使用的类WGS84坐标类型, 涉及到的坐标类型如下:
@@ -55,8 +56,12 @@ public enum CoordinateType {
         try {
             return CoordinateType.valueOf(t);
         } catch (Throwable e) {
-            throw new InvalidCoordinateTypeException(t);
+            throw new InvalidCRSException(t);
         }
+    }
+
+    public CRS toCRS() {
+        return CoordinateTypeHelper.convertToCRS(this);
     }
 
 }
