@@ -16,18 +16,18 @@ public class GeoJSONFactory {
     static Map<String, Class> geoJsonTypeMap = new HashMap<String, Class>();
 
     static {
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_POINT,Point.class);
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_LINESTRING,LineString.class);
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_POLYGON,Polygon.class);
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_MULTIPOINT,MultiPoint.class);
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_MULTILINESTRING,MultiLineString.class);
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_MULTIPOLYGON,MultiPolygon.class);
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_GEOMETRYCOLLECTION,GeometryCollection.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_POINT,Point.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_LINESTRING,LineString.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_POLYGON,Polygon.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_MULTIPOINT,MultiPoint.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_MULTILINESTRING,MultiLineString.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_MULTIPOLYGON,MultiPolygon.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_GEOMETRYCOLLECTION,GeometryCollection.class);
         //extended geojson types
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_EXT_CIRCLE,Circle.class);
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_EXT_ELLIPSE,Ellipse.class);
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_EXT_RECTANGLE,Rectangle.class);
-        geoJsonTypeMap.put(GeoJsonTypes.TYPE_EXT_SECTOR,Sector.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_EXT_CIRCLE,Circle.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_EXT_ELLIPSE,Ellipse.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_EXT_RECTANGLE,Rectangle.class);
+        geoJsonTypeMap.put(GeoJSONTypes.TYPE_EXT_SECTOR,Sector.class);
     }
 
     public static GeoJSON create(String json) {
@@ -154,7 +154,7 @@ public class GeoJSONFactory {
     }
 
     private static Geometry readGeometry(JSONObject node, String type) {
-        if (GeoJsonTypes.TYPE_GEOMETRYCOLLECTION.equals(type)) {
+        if (GeoJSONTypes.TYPE_GEOMETRYCOLLECTION.equals(type)) {
             JSONObject crsJson = node.getJSONObject("crs");
             CRS crs = null;
             if (crsJson != null) {

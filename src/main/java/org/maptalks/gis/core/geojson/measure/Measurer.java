@@ -136,26 +136,26 @@ public class Measurer{
 
         String type = geoJSON.getType();
 
-        switch (GeoJsonTypes.intValueOf(type)) {
-            case GeoJsonTypes.INT_TYPE_EXT_CIRCLE:
+        switch (GeoJSONTypes.intValueOf(type)) {
+            case GeoJSONTypes.INT_TYPE_EXT_CIRCLE:
                 return 2 * Math.PI * ((Circle) geoJSON).getRadius();
-            case  GeoJsonTypes.INT_TYPE_EXT_ELLIPSE:
+            case  GeoJSONTypes.INT_TYPE_EXT_ELLIPSE:
                 return 0;
-            case GeoJsonTypes.INT_TYPE_LINESTRING:
+            case GeoJSONTypes.INT_TYPE_LINESTRING:
                 return ruler.computeGeodesicLength(((LineString) geoJSON).getCoordinates());
-            case GeoJsonTypes.INT_TYPE_POLYGON:
+            case GeoJSONTypes.INT_TYPE_POLYGON:
                 return computeLength(((Polygon) geoJSON).getCoordinates(), crs);
-            case GeoJsonTypes.INT_TYPE_EXT_RECTANGLE: {
+            case GeoJSONTypes.INT_TYPE_EXT_RECTANGLE: {
                 Rectangle rect = ((Rectangle) geoJSON);
                 double width = rect.getWidth();
                 double height = rect.getHeight();
                 return 2 * width * height;
             }
-            case GeoJsonTypes.INT_TYPE_MULTIPOLYGON:
+            case GeoJSONTypes.INT_TYPE_MULTIPOLYGON:
                 return computeLength(((MultiPolygon) geoJSON).getCoordinates(),crs);
-            case GeoJsonTypes.INT_TYPE_MULTILINESTRING:
+            case GeoJSONTypes.INT_TYPE_MULTILINESTRING:
                 return computeLength(((MultiLineString) geoJSON).getCoordinates(), crs);
-            case GeoJsonTypes.INT_TYPE_GEOMETRYCOLLECTION:
+            case GeoJSONTypes.INT_TYPE_GEOMETRYCOLLECTION:
                 double result = 0;
                 Geometry[] geometries = ((GeometryCollection) geoJSON).getGeometries();
                 if (geometries != null && geometries.length > 0) {
@@ -197,32 +197,32 @@ public class Measurer{
 
         String type = geoJSON.getType();
 
-        switch (GeoJsonTypes.intValueOf(type)) {
-            case GeoJsonTypes.INT_TYPE_EXT_CIRCLE:
+        switch (GeoJSONTypes.intValueOf(type)) {
+            case GeoJSONTypes.INT_TYPE_EXT_CIRCLE:
                 return Math.PI * Math.pow(((Circle) geoJSON).getRadius(), 2);
-            case  GeoJsonTypes.INT_TYPE_EXT_ELLIPSE: {
+            case  GeoJSONTypes.INT_TYPE_EXT_ELLIPSE: {
                 Ellipse ellipse = ((Ellipse) geoJSON);
                 double width = ellipse.getWidth(),
                     height = ellipse.getHeight();
                 return Math.PI * width * height;
 
             }
-            case GeoJsonTypes.INT_TYPE_EXT_RECTANGLE: {
+            case GeoJSONTypes.INT_TYPE_EXT_RECTANGLE: {
                 Rectangle rect = ((Rectangle) geoJSON);
                 double width = rect.getWidth();
                 double height = rect.getHeight();
                 return width * height;
             }
-            case GeoJsonTypes.INT_TYPE_EXT_SECTOR: {
+            case GeoJSONTypes.INT_TYPE_EXT_SECTOR: {
                 Sector sector = ((Sector) geoJSON);
                 return Math.abs(Math.PI
                     * Math.pow(sector.getRadius(), 2)
                     * (sector.getEndAngle() - sector.getStartAngle())
                     / 360);
             }
-            case GeoJsonTypes.INT_TYPE_POLYGON:
+            case GeoJSONTypes.INT_TYPE_POLYGON:
                 return computePolygonArea(((Polygon) geoJSON).getCoordinates(), crs);
-            case GeoJsonTypes.INT_TYPE_MULTIPOLYGON: {
+            case GeoJSONTypes.INT_TYPE_MULTIPOLYGON: {
                 double result = 0;
                 double[][][][] multiRings = ((MultiPolygon) geoJSON).getCoordinates();
                 if (multiRings != null) {
@@ -232,7 +232,7 @@ public class Measurer{
                 }
                 return result;
             }
-            case GeoJsonTypes.INT_TYPE_GEOMETRYCOLLECTION: {
+            case GeoJSONTypes.INT_TYPE_GEOMETRYCOLLECTION: {
                 double result = 0;
                 Geometry[] geometries = ((GeometryCollection) geoJSON).getGeometries();
                 if (geometries != null && geometries.length > 0) {
