@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by fuzhen on 2015/8/11.
  */
-public class GeoJsonTypes {
+public class GeoJSONTypes {
     public final static String TYPE_POINT="Point";
     public final static String TYPE_LINESTRING="LineString";
     public final static String TYPE_POLYGON="Polygon";
