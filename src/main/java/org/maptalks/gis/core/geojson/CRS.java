@@ -122,5 +122,20 @@ public class CRS {
         return crs;
     }
 
+    /**
+     * create a proj4 style CRS
+     * @param proj  proj4 string
+     * @return      proj4 style crs
+     */
+    public static CRS createProj4(final String proj) {
+        CRS crs = new CRS();
+        crs.setType("proj4");
+        crs.setProperties(new HashMap<String, Object>() {
+            {
+                put("proj", proj);
+            }
+        });
+        return crs;
+    }
 
 }
