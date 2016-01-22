@@ -21,6 +21,24 @@ public class Polygon extends Geometry {
 
     public void setCoordinates(double[][][] coordinates) {
         this.coordinates = coordinates;
+        this.closeRing();
+    }
+
+    private void closeRing() {
+        if (coordinates == null) {
+            return;
+        }
+        for (int i = 0; i < coordinates.length; i++) {
+            double[][] ring = coordinates[i];
+            if (ring != null && ring.length>0) {
+                if (!Arrays.equals(ring[0], ring[ring.length - 1])) {
+                    double[][] close = new double[ring.length+1][];
+                    System.arraycopy(ring,0,close,0,ring.length);
+                    close[close.length-1] = ring[0];
+                    coordinates[i] = close;
+                }
+            }
+        }
     }
 
     @Override

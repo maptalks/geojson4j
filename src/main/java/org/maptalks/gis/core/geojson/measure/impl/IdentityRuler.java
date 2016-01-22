@@ -3,7 +3,7 @@ package org.maptalks.gis.core.geojson.measure.impl;
 /**
  * Created by fuzhen on 2015/7/2.
  */
-public class PixelRuler implements IRuler {
+public class IdentityRuler implements IRuler {
 
     public double[] locate(double[] src, double xDistance, double yDistance) {
         return new double[]{src[0] + xDistance, src[1] + yDistance};

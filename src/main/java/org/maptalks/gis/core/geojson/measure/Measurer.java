@@ -9,19 +9,19 @@ import org.maptalks.gis.core.geojson.ext.Rectangle;
 import org.maptalks.gis.core.geojson.ext.Sector;
 import org.maptalks.gis.core.geojson.measure.impl.SphericalRuler;
 import org.maptalks.gis.core.geojson.measure.impl.IRuler;
-import org.maptalks.gis.core.geojson.measure.impl.PixelRuler;
+import org.maptalks.gis.core.geojson.measure.impl.IdentityRuler;
 
 /**
  * Created by fuzhen on 2015/7/2.
  */
 public class Measurer{
     private static IRuler sphericalRuler = new SphericalRuler();
-    private static IRuler pixelRuler = new PixelRuler();
+    private static IRuler identityRuler = new IdentityRuler();
 
     private static IRuler getRuler(CRS crs) {
         CoordinateType ct = CoordinateTypeHelper.convertFromCRS(crs);
         if (CoordinateType.pixel.equals(crs)) {
-            return pixelRuler;
+            return identityRuler;
         }
         return sphericalRuler;
     }
