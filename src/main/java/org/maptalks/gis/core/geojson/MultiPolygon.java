@@ -32,14 +32,14 @@ public class MultiPolygon extends Geometry {
         for (int i = 0; i < coordinates.length; i++) {
             double[][][] polygon = coordinates[i];
             if (polygon != null) {
-                for (int i1 = 0; 1 < polygon.length; i1++) {
+                for (int i1 = 0; i1 < polygon.length; i1++) {
                     double[][] ring = polygon[i1];
                     if (ring != null && ring.length>0) {
                         if (!Arrays.equals(ring[0], ring[ring.length - 1])) {
                             double[][] close = new double[ring.length+1][];
                             System.arraycopy(ring,0,close,0,ring.length);
                             close[close.length-1] = ring[0];
-                            polygon[i] = close;
+                            polygon[i1] = close;
                         }
                     }
                 }

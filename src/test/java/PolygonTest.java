@@ -43,12 +43,12 @@ public class PolygonTest {
             //polygon1
             new double[][][] {
                 new double[][]{new double[]{109,32},new double[]{109,31},
-                    new double[]{109,30},new double[]{108,30},new double[]{109,32}}
+                    new double[]{109,30},new double[]{108,30},new double[]{109.1,32.2}}
             },
             //polygon2
             new double[][][] {
                 new double[][]{new double[]{119,32},new double[]{119,31},
-                    new double[]{119,30},new double[]{118,30},new double[]{119,32}}
+                    new double[]{119,30},new double[]{118,30},new double[]{119.1,32.2}}
             }
         };
         return new MultiPolygon(multiRings);
