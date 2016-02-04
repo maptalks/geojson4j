@@ -33,7 +33,8 @@ public class CRS {
     public final static CRS WGS84 = CRS.createProj4("+proj=longlat +datum=WGS84 +no_defs");
     public final static CRS EPSG4326 = WGS84;
     public final static CRS EPSG3857 = CRS.createProj4("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs");
-    public final static CRS IDENTITY = CRS.createProj4("+proj=identity +datum=+no_defs");
+    //crs for plane coordinate systems, like indoor map or pixel based scenarios.
+    public final static CRS IDENTITY = CRS.createProj4("+proj=identity");
     //official coordinate system in China, in most cases, it can be considered same with wgs84
     //http://spatialreference.org/ref/sr-org/7408/
     public final static CRS CGCS2000 = CRS.createProj4("+proj=longlat +datum=CGCS2000");
@@ -64,6 +65,9 @@ public class CRS {
      * @return
      */
     public static CRS parseJson(String json) {
+        if (json == null || json.length() ==0) {
+            return null;
+        }
         try {
             return JSON.parseObject(json, CRS.class);
         }catch (Throwable e) {
@@ -85,6 +89,13 @@ public class CRS {
             }
         });
         return crs;
+    }
+
+    public static String getProj4(CRS crs) {
+        if (crs == null || crs.getProperties() == null) {
+            return null;
+        }
+        return crs.getProperties().get("proj").toString();
     }
 
 }
