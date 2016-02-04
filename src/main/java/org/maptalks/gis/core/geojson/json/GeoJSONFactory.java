@@ -118,15 +118,9 @@ public class GeoJSONFactory {
     private static FeatureCollection readFeatureCollection(JSONObject node) {
 
         JSONArray jFeatures = node.getJSONArray("features");
-        JSONObject crsJson = node.getJSONObject("crs");
-        CRS crs = null;
-        if (crsJson != null) {
-            crs = JSON.toJavaObject(crsJson, CRS.class);
-        }
         if (jFeatures == null) {
             //return a empty FeatureCollection
             FeatureCollection result = new FeatureCollection();
-            result.setCrs(crs);
             result.setFeatures(new Feature[0]);
             return result;
         }
@@ -136,7 +130,6 @@ public class GeoJSONFactory {
             features[i] = readFeature(jFeatures.getJSONObject(i));
         }
         FeatureCollection result = new FeatureCollection();
-        result.setCrs(crs);
         result.setFeatures(features);
         return result;
     }
@@ -155,13 +148,7 @@ public class GeoJSONFactory {
 
     private static Geometry readGeometry(JSONObject node, String type) {
         if (GeoJSONTypes.TYPE_GEOMETRYCOLLECTION.equals(type)) {
-            JSONObject crsJson = node.getJSONObject("crs");
-            CRS crs = null;
-            if (crsJson != null) {
-                crs = JSON.toJavaObject(crsJson, CRS.class);
-            }
             GeometryCollection result = new GeometryCollection(new Geometry[0]);
-            result.setCrs(crs);
             JSONArray jGeos = node.getJSONArray("geometries");
             if (jGeos != null) {
                 int size = jGeos.size();

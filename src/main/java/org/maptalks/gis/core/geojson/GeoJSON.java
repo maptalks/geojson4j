@@ -8,7 +8,6 @@ public abstract class GeoJSON {
     // default: 0
     @JSONField(ordinal = -1)
     private String type;
-    private CRS crs;
 
     public GeoJSON() {
         setType(getClass().getSimpleName());
@@ -27,11 +26,4 @@ public abstract class GeoJSON {
         this.type = type;
     }
 
-    public CRS getCrs() {
-        return crs;
-    }
-
-    public void setCrs(CRS crs) {
-        this.crs = crs;
-    }
 }

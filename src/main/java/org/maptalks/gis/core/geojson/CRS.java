@@ -1,7 +1,6 @@
 package org.maptalks.gis.core.geojson;
 
 import com.alibaba.fastjson.JSON;
-import org.maptalks.gis.core.geojson.common.CoordinateType;
 import org.maptalks.gis.core.geojson.common.exceptions.InvalidCRSException;
 
 import java.util.HashMap;
@@ -30,12 +29,20 @@ public class CRS {
         this.properties = properties;
     }
 
-    public final static CRS DEFAULT = CoordinateType.gcj02.toCRS();
-    public final static CRS BD09LL = CoordinateType.bd09ll.toCRS();
-    public final static CRS PIXEL = CoordinateType.pixel.toCRS();
-    public final static CRS GCJ02 = CoordinateType.gcj02.toCRS();
-    public final static CRS CGCS2000 = CoordinateType.cgcs2000.toCRS();
-    public final static CRS WGS84 = CoordinateType.wgs84.toCRS();
+    //some common used CRS definitions
+    public final static CRS WGS84 = CRS.createProj4("+proj=longlat +datum=WGS84 +no_defs");
+    public final static CRS EPSG4326 = WGS84;
+    public final static CRS EPSG3857 = CRS.createProj4("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs");
+    public final static CRS IDENTITY = CRS.createProj4("+proj=identity +datum=+no_defs");
+    //official coordinate system in China, in most cases, it can be considered same with wgs84
+    //http://spatialreference.org/ref/sr-org/7408/
+    public final static CRS CGCS2000 = CRS.createProj4("+proj=longlat +datum=CGCS2000");
+    //crs usded in Chinese map services due to the coordinate encryption.
+    //https://en.wikipedia.org/wiki/Restrictions_on_geographic_data_in_China
+    public final static CRS BD09LL = CRS.createProj4("+proj=longlat +datum=BD09");
+    public final static CRS GCJ02 = CRS.createProj4("+proj=longlat +datum=GCJ02");
+
+    public final static CRS DEFAULT = WGS84;
 
     @Override
     public boolean equals(Object obj) {
@@ -62,64 +69,6 @@ public class CRS {
         }catch (Throwable e) {
             throw new InvalidCRSException(json,e);
         }
-    }
-
-    /**
-     * create a Chinese Coordinate Type CRS.
-     * example:
-     * "crs": {"type": "cnCoordinateType","properties": {"name": "gcj02"}}
-     * possible values: gcj02, cgcs2000, bd09ll, wgs84
-     * @param coordinateType
-     * @return
-     */
-    public static CRS createCnCoordinateType(final CoordinateType coordinateType) {
-        CRS crs = new CRS();
-        crs.setType("cnCoordinateType");
-        crs.setProperties(new HashMap<String, Object>(){
-            {
-                put("name", coordinateType.toString());
-            }
-        });
-        return crs;
-    }
-
-    /**
-     * create a standard CRS.
-     * this is recommended by geojson.org
-     * @link http://geojson.org/geojson-spec.html#named-crs
-     * example:
-     * "crs": {"type": "name","properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}}
-     * @param name
-     * @return
-     */
-    public static CRS createCRS(final String name) {
-        CRS crs = new CRS();
-        crs.setType("name");
-        crs.setProperties(new HashMap<String, Object>(){
-            {
-                put("name", name);
-            }
-        });
-        return crs;
-    }
-
-    /**
-     * create a EPSG style CRS recommended by spatialreference.org.
-     * @link http://spatialreference.org/ref/epsg/4326/json/
-     * example:
-     * {'type': 'EPSG', 'properties': {'code': 4326}}
-     * @param code
-     * @return
-     */
-    public static CRS createEPSGCRS(final String code) {
-        CRS crs = new CRS();
-        crs.setType("EPSG");
-        crs.setProperties(new HashMap<String, Object>(){
-            {
-                put("code", code);
-            }
-        });
-        return crs;
     }
 
     /**
