@@ -1,8 +1,6 @@
 package org.maptalks.gis.core.geojson.measure;
 
 import org.maptalks.gis.core.geojson.*;
-import org.maptalks.gis.core.geojson.common.CoordinateType;
-import org.maptalks.gis.core.geojson.common.CoordinateTypeHelper;
 import org.maptalks.gis.core.geojson.ext.Circle;
 import org.maptalks.gis.core.geojson.ext.Ellipse;
 import org.maptalks.gis.core.geojson.ext.Rectangle;
@@ -19,8 +17,7 @@ public class Measurer{
     private static IRuler identityRuler = new IdentityRuler();
 
     private static IRuler getRuler(CRS crs) {
-        CoordinateType ct = CoordinateTypeHelper.convertFromCRS(crs);
-        if (CoordinateType.pixel.equals(crs)) {
+        if (crs.getProperties() != null && CRS.IDENTITY.getProperties().get("proj").toString().equalsIgnoreCase(crs.getProperties().get("proj").toString())) {
             return identityRuler;
         }
         return sphericalRuler;

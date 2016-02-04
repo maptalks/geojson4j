@@ -6,15 +6,25 @@ package org.maptalks.gis.core.geojson.measure.impl;
  */
 public class SphericalRuler implements IRuler {
 
+    private double radius = 6378137;
+
+    public SphericalRuler() {
+
+    }
+
+    public SphericalRuler(double radius) {
+        this.radius = radius;
+    }
+
     public double[] locate(double[] src, double xDistance,
                               double yDistance) {
         double dx = Math.abs(xDistance);
         double dy = Math.abs(yDistance);
         double ry = this.rad(src[1]);
         double rx = this.rad(src[0]);
-        double sy = Math.sin(dy / (2 * 6378137)) * 2;
+        double sy = Math.sin(dy / (2 * radius)) * 2;
         ry = ry + sy * (yDistance > 0 ? 1 : -1);
-        double sx = 2 * Math.sqrt(Math.pow(Math.sin(dx / (2 * 6378137)), 2)
+        double sx = 2 * Math.sqrt(Math.pow(Math.sin(dx / (2 * radius)), 2)
                 / Math.pow(Math.cos(ry), 2));
         rx = rx + sx * (xDistance > 0 ? 1 : -1);
         if (Double.isNaN(rx) || Double.isNaN(ry)) {
@@ -25,7 +35,7 @@ public class SphericalRuler implements IRuler {
 
 
     public double computeArea(double[][] rings) {
-        double a = 6378137 * Math.PI / 180, b = 0;
+        double a = radius * Math.PI / 180, b = 0;
         if (rings.length < 3) {
             return 0d;
         }
@@ -74,7 +84,7 @@ public class SphericalRuler implements IRuler {
                 + Math.cos(b)
                 * Math.cos(d)
                 * Math.pow(Math.sin(f / 2), 2)));
-        b *= 6378137;
+        b *= radius;
         return b = Math.round(b * 1E4) / 1E4;
     }
 
