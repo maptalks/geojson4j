@@ -4,7 +4,7 @@
 
     <groupId>org.maptalks</groupId>
     <artifactId>maptalks-geojson</artifactId>
-    <version>1.1.4-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,6 +20,11 @@
     </scm>
 
     <dependencies>
+        <dependency>
+            <groupId>org.maptalks</groupId>
+            <artifactId>proj4m</artifactId>
+            <version>0.1.1</version>
+        </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
