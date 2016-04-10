@@ -1,7 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
-import org.maptalks.gis.core.geojson.*;
-import org.maptalks.gis.core.geojson.json.GeoJSONFactory;
+import org.maptalks.geojson.*;
+import org.maptalks.geojson.json.GeoJSONFactory;
 
 /**
  * Created by fuzhen on 2015/10/7.

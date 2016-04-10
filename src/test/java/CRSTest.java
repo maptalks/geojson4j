@@ -1,6 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
-import org.maptalks.gis.core.geojson.CRS;
+import org.maptalks.geojson.CRS;
 
 /**
  * Created by fuzhen on 2015/10/29.

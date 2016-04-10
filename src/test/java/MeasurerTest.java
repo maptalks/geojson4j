@@ -1,8 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
-import org.maptalks.gis.core.geojson.CRS;
-import org.maptalks.gis.core.geojson.Point;
-import org.maptalks.gis.core.geojson.measure.Measurer;
+import org.maptalks.geojson.CRS;
+import org.maptalks.geojson.Point;
+import org.maptalks.geojson.measure.Measurer;
 
 /**
  * Created by fuzhen on 2015/10/29.

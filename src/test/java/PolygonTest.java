@@ -1,8 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
-import org.maptalks.gis.core.geojson.Geometry;
-import org.maptalks.gis.core.geojson.MultiPolygon;
-import org.maptalks.gis.core.geojson.Polygon;
+import org.maptalks.geojson.Geometry;
+import org.maptalks.geojson.MultiPolygon;
+import org.maptalks.geojson.Polygon;
 
 import java.util.Arrays;
 
