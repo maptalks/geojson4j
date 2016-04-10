@@ -4,7 +4,7 @@
 
     <groupId>org.maptalks</groupId>
     <artifactId>geojson4j</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +16,7 @@
         <connection>scm:git:https://github.com/MapTalks/geojson4j</connection>
         <developerConnection>scm:git:git@github.com:MapTalks/geojson4j.git</developerConnection>
         <url>https://github.com/MapTalks/geojson4j</url>
-        <tag>v2.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencies>
