@@ -18,16 +18,18 @@
         <url>https://github.com/MapTalks/geojson4j</url>
         <tag>HEAD</tag>
     </scm>
-    
-    <repository>
-      <id>MapTalks-mvn-repo</id>
-      <name>MapTalks Maven Repository</name>
-      <url>https://raw.github.com/MapTalks/mvn-repo/master/</url>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
-    </repository>
+
+    <repositories>
+        <repository>
+            <id>MapTalks-mvn-repo</id>
+            <name>MapTalks Maven Repository</name>
+            <url>https://raw.github.com/MapTalks/mvn-repo/master/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
