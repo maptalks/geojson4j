@@ -1,5 +1,4 @@
 # MapTalks-GeoJSON
-===
 [![Circle CI](https://circleci.com/gh/MapTalks/geojson4j.svg?style=svg)](https://circleci.com/gh/MapTalks/geojson4j)
 
 GeoJSON Serilization and mutual conversion with JSON
