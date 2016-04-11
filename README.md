@@ -1,4 +1,7 @@
 # MapTalks-GeoJSON
+===
+[![Circle CI](https://circleci.com/gh/MapTalks/geojson4j.svg?style=svg)](https://circleci.com/gh/MapTalks/geojson4j)
+
 GeoJSON Serilization and mutual conversion with JSON
 
 GeoJSON基础库, 定义最基本的数据结构和序列化/反序列化方法.
