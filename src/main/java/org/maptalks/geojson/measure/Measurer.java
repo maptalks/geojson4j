@@ -1,10 +1,6 @@
 package org.maptalks.geojson.measure;
 
 import org.maptalks.geojson.*;
-import org.maptalks.geojson.ext.Circle;
-import org.maptalks.geojson.ext.Ellipse;
-import org.maptalks.geojson.ext.Rectangle;
-import org.maptalks.geojson.ext.Sector;
 import org.maptalks.geojson.measure.impl.IRuler;
 import org.maptalks.geojson.measure.impl.IdentityRuler;
 import org.maptalks.geojson.measure.impl.SphericalRuler;
@@ -134,20 +130,11 @@ public class Measurer{
         String type = geoJSON.getType();
 
         switch (GeoJSONTypes.intValueOf(type)) {
-            case GeoJSONTypes.INT_TYPE_EXT_CIRCLE:
-                return 2 * Math.PI * ((Circle) geoJSON).getRadius();
-            case  GeoJSONTypes.INT_TYPE_EXT_ELLIPSE:
-                return 0;
             case GeoJSONTypes.INT_TYPE_LINESTRING:
                 return ruler.computeGeodesicLength(((LineString) geoJSON).getCoordinates());
             case GeoJSONTypes.INT_TYPE_POLYGON:
                 return computeLength(((Polygon) geoJSON).getCoordinates(), crs);
-            case GeoJSONTypes.INT_TYPE_EXT_RECTANGLE: {
-                Rectangle rect = ((Rectangle) geoJSON);
-                double width = rect.getWidth();
-                double height = rect.getHeight();
-                return 2 * width * height;
-            }
+
             case GeoJSONTypes.INT_TYPE_MULTIPOLYGON:
                 return computeLength(((MultiPolygon) geoJSON).getCoordinates(),crs);
             case GeoJSONTypes.INT_TYPE_MULTILINESTRING:
@@ -195,28 +182,6 @@ public class Measurer{
         String type = geoJSON.getType();
 
         switch (GeoJSONTypes.intValueOf(type)) {
-            case GeoJSONTypes.INT_TYPE_EXT_CIRCLE:
-                return Math.PI * Math.pow(((Circle) geoJSON).getRadius(), 2);
-            case  GeoJSONTypes.INT_TYPE_EXT_ELLIPSE: {
-                Ellipse ellipse = ((Ellipse) geoJSON);
-                double width = ellipse.getWidth(),
-                    height = ellipse.getHeight();
-                return Math.PI * width * height;
-
-            }
-            case GeoJSONTypes.INT_TYPE_EXT_RECTANGLE: {
-                Rectangle rect = ((Rectangle) geoJSON);
-                double width = rect.getWidth();
-                double height = rect.getHeight();
-                return width * height;
-            }
-            case GeoJSONTypes.INT_TYPE_EXT_SECTOR: {
-                Sector sector = ((Sector) geoJSON);
-                return Math.abs(Math.PI
-                    * Math.pow(sector.getRadius(), 2)
-                    * (sector.getEndAngle() - sector.getStartAngle())
-                    / 360);
-            }
             case GeoJSONTypes.INT_TYPE_POLYGON:
                 return computePolygonArea(((Polygon) geoJSON).getCoordinates(), crs);
             case GeoJSONTypes.INT_TYPE_MULTIPOLYGON: {

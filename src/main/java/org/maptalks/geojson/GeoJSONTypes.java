@@ -14,11 +14,6 @@ public class GeoJSONTypes {
     public final static String TYPE_MULTILINESTRING="MultiLineString";
     public final static String TYPE_MULTIPOLYGON="MultiPolygon";
     public final static String TYPE_GEOMETRYCOLLECTION="GeometryCollection";
-    //extended geojson types
-    public static final String TYPE_EXT_CIRCLE = "Circle";
-    public static final String TYPE_EXT_ELLIPSE = "Ellipse";
-    public static final String TYPE_EXT_RECTANGLE = "Rectangle";
-    public static final String TYPE_EXT_SECTOR = "Sector";
 
 
 
@@ -30,11 +25,6 @@ public class GeoJSONTypes {
     public final static int INT_TYPE_MULTILINESTRING=5;
     public final static int INT_TYPE_MULTIPOLYGON=6;
     public final static int INT_TYPE_GEOMETRYCOLLECTION=7;
-    //extended geojson types
-    public static final int INT_TYPE_EXT_CIRCLE = 101;
-    public static final int INT_TYPE_EXT_ELLIPSE = 102;
-    public static final int INT_TYPE_EXT_RECTANGLE = 103;
-    public static final int INT_TYPE_EXT_SECTOR = 104;
 
 
     private static final Map<String, Integer> typeMaps = new HashMap<String, Integer>();
@@ -48,11 +38,6 @@ public class GeoJSONTypes {
         typeMaps.put(TYPE_MULTILINESTRING, INT_TYPE_MULTILINESTRING);
         typeMaps.put(TYPE_MULTIPOLYGON, INT_TYPE_MULTIPOLYGON);
         typeMaps.put(TYPE_GEOMETRYCOLLECTION, INT_TYPE_GEOMETRYCOLLECTION);
-        //-----
-        typeMaps.put(TYPE_EXT_CIRCLE, INT_TYPE_EXT_CIRCLE);
-        typeMaps.put(TYPE_EXT_ELLIPSE, INT_TYPE_EXT_ELLIPSE);
-        typeMaps.put(TYPE_EXT_RECTANGLE, INT_TYPE_EXT_RECTANGLE);
-        typeMaps.put(TYPE_EXT_SECTOR, INT_TYPE_EXT_SECTOR);
 
         for (Map.Entry<String, Integer> entry : typeMaps.entrySet()) {
             rTypeMaps.put(entry.getValue(), entry.getKey());

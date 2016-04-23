@@ -4,10 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.maptalks.geojson.*;
-import org.maptalks.geojson.ext.Circle;
-import org.maptalks.geojson.ext.Ellipse;
-import org.maptalks.geojson.ext.Rectangle;
-import org.maptalks.geojson.ext.Sector;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,11 +19,6 @@ public class GeoJSONFactory {
         geoJsonTypeMap.put(GeoJSONTypes.TYPE_MULTILINESTRING,MultiLineString.class);
         geoJsonTypeMap.put(GeoJSONTypes.TYPE_MULTIPOLYGON,MultiPolygon.class);
         geoJsonTypeMap.put(GeoJSONTypes.TYPE_GEOMETRYCOLLECTION,GeometryCollection.class);
-        //extended geojson types
-        geoJsonTypeMap.put(GeoJSONTypes.TYPE_EXT_CIRCLE,Circle.class);
-        geoJsonTypeMap.put(GeoJSONTypes.TYPE_EXT_ELLIPSE,Ellipse.class);
-        geoJsonTypeMap.put(GeoJSONTypes.TYPE_EXT_RECTANGLE,Rectangle.class);
-        geoJsonTypeMap.put(GeoJSONTypes.TYPE_EXT_SECTOR,Sector.class);
     }
 
     public static GeoJSON create(String json) {
