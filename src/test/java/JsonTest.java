@@ -128,30 +128,6 @@ public class JsonTest {
                 "                  \"coordinates\": [ [101.0, 0.0], [102.0, 1.0] ]\n" +
                 "                }\n" +
                 "            ]\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"type\":\"Circle\",\n" +
-                "            \"coordinates\":[100.0,0.0],\n" +
-                "            \"radius\":100\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"type\":\"Ellipse\",\n" +
-                "            \"coordinates\":[100.0,0.0],\n" +
-                "            \"width\":100,\n" +
-                "            \"height\":50\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"type\":\"Rectangle\",\n" +
-                "            \"coordinates\":[100.0,0.0],\n" +
-                "            \"width\":100,\n" +
-                "            \"height\":50\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"type\":\"Sector\",\n" +
-                "            \"coordinates\":[100.0,0.0],\n" +
-                "            \"radius\":1000,\n" +
-                "            \"startAngle\":50,\n" +
-                "            \"endAngle\":120\n" +
                 "        }\n" +
                 "    ]";
         Geometry[] geometries =GeoJSONFactory.createGeometryArray(json);

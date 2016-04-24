@@ -1,10 +1,6 @@
 package org.maptalks.geojson.common;
 
 import org.maptalks.geojson.*;
-import org.maptalks.geojson.ext.Circle;
-import org.maptalks.geojson.ext.Ellipse;
-import org.maptalks.geojson.ext.Rectangle;
-import org.maptalks.geojson.ext.Sector;
 import org.maptalks.proj4.Proj4;
 import org.maptalks.proj4.Proj4Exception;
 
@@ -60,22 +56,6 @@ public class ProjectionTransform {
                 return new GeometryCollection(array);
             }
             return new GeometryCollection();
-        } else if (geometry instanceof Sector) {
-            Sector sector = ((Sector) geometry);
-            double[] c = convert(sector.getCoordinates(), proj4);
-            return new Sector(c, sector.getRadius(), sector.getStartAngle(), sector.getEndAngle(), sector.getUnit());
-        } else if (geometry instanceof Circle) {
-            Circle circle = ((Circle) geometry);
-            double[] c = convert(circle.getCoordinates(), proj4);
-            return new Circle(c, circle.getRadius(), circle.getUnit());
-        } else if (geometry instanceof Ellipse) {
-            Ellipse ellipse = ((Ellipse) geometry);
-            double[] c = convert(ellipse.getCoordinates(), proj4);
-            return new Ellipse(c, ellipse.getWidth(), ellipse.getHeight(), ellipse.getUnit());
-        } else if (geometry instanceof Rectangle) {
-            Rectangle rect = ((Rectangle) geometry);
-            double[] c = convert(rect.getCoordinates(), proj4);
-            return new Rectangle(c, rect.getWidth(), rect.getHeight(), rect.getUnit());
         }
         return null;
     }
