@@ -13,7 +13,8 @@ public class Measurer{
     private static IRuler identityRuler = new IdentityRuler();
 
     private static IRuler getRuler(CRS crs) {
-        if (crs.getProperties() != null && CRS.IDENTITY.getProperties().get("proj").toString().equalsIgnoreCase(crs.getProperties().get("proj").toString())) {
+        if (crs.getProperties() != null && crs.getProperties().get("proj") != null &&
+            CRS.IDENTITY.getProperties().get("proj").toString().equalsIgnoreCase(crs.getProperties().get("proj").toString())) {
             return identityRuler;
         }
         return sphericalRuler;
