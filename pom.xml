@@ -8,7 +8,7 @@
 
     <name>geojson4j</name>
     <description>GeoJSON Serilization and mutual conversion with JSON .</description>
-    <url>https://github.com/MapTalks/geojson4j</url>
+    <url>https://github.com/maptalks/geojson4j</url>
     <licenses>
         <license>
             <name>The MIT License (MIT)</name>
@@ -17,7 +17,7 @@
         </license>
     </licenses>
     <issueManagement>
-        <url>https://github.com/MapTalks/geojson4j/issues</url>
+        <url>https://github.com/maptalks/geojson4j/issues</url>
     </issueManagement>
     <developers>
         <developer>
@@ -37,9 +37,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:https://github.com/MapTalks/geojson4j</connection>
-        <developerConnection>scm:git:git@github.com:MapTalks/geojson4j.git</developerConnection>
-        <url>https://github.com/MapTalks/geojson4j</url>
+        <connection>scm:git:https://github.com/maptalks/geojson4j</connection>
+        <developerConnection>scm:git:git@github.com:maptalks/geojson4j.git</developerConnection>
+        <url>https://github.com/maptalks/geojson4j</url>
         <tag>HEAD</tag>
     </scm>
 
